@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: MIT
 // This is a reference solidity doc
 
 // This defines the compiler version
@@ -6,10 +6,13 @@
 // Specify a one version like 0.8.4
 pragma solidity ^0.8.4;
 
-// Defining contract
-contract Contract {
-    /* 1) Varibles 
+contract Varibles {
+    /* Varibles 
         [DATA TYPE] [VISIBILITY] [NAME OF VARIBLE] = VALUE;
+        
+        constant variables (recommended to save gas)
+        [DATA TYPE] [VISIBILITY] constant [NAME OF VARIBLE] = VALUE;
+
 
         Common Data Types:
             string
@@ -31,6 +34,13 @@ contract Contract {
         Types of Data Types:
             Values: bool, int ..
             Reference: Array
+
+        Default Values:
+            bool = false
+            uint = 0
+            int = 0
+            address = 0x000000000000000000000000000000000000
+            bytes32 = 0x0E32
     */
 
     // Those are "state variables" because declared on level 1 of contract
@@ -44,35 +54,5 @@ contract Contract {
     int public minInt = type(int).min;
     int public maxInt = type(int).max;
 
-    /* 2) Functions
-        function FUNCTION_NAME(DATATYPE VARIABLE_NAME) VISIBILITY READ/WRITE_TYPE returns(RETURNED_DATATYPE) {
-            LOGIC
-            return LOGIC
-        }
-
-        pure: read function + CAN NOT read data from blockchain and state variables or smart contracts
-        view: read function + CAN read data from blockchain and state variables or smart contracts
-
-    */
-
-    function add(uint x, uint y) external pure returns(uint) {
-        uint sum = x + y;   // Local variable 
-        return sum;
-    }
-
-    function globalVars() external view returns(address, uint, uint) {
-        // Global variables: stores data from blockchain
-        address sender = msg.sender;            // The address of the caller
-        uint timestamp = block.timestamp;       // Timestamp of the calling request of contract
-        uint blockNum = block.number;           // Stores the block number
-        return (sender, timestamp, blockNum);
-    }
-
-
-
-    /*
-
-
-    */
 }   
 
